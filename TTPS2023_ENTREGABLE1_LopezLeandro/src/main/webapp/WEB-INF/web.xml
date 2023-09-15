@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd" version="5.0">
+  <display-name>TTPS2023_ENTREGABLE1_LopezLeandro</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <context-param>
+    <param-name>cantidadRemeras</param-name>
+    <param-value>5</param-value>
+  </context-param>
+  <listener>
+    <listener-class>ttps.listeners.RemerasListener</listener-class>
+  </listener>
+  <servlet>
+    <description></description>
+    <display-name>ImprimeCupon</display-name>
+    <servlet-name>ImprimeCupon</servlet-name>
+    <servlet-class>ttps.servlets.ImprimeCupon</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ImprimeCupon</servlet-name>
+    <url-pattern>/ImprimeCupon</url-pattern>
+  </servlet-mapping>
+  <filter>
+    <display-name>FiltroStockRemeras</display-name>
+    <filter-name>FiltroStockRemeras</filter-name>
+    <filter-class>ttps.filters.FiltroStockRemeras</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>FiltroStockRemeras</filter-name>
+    <url-pattern>/ImprimeCupon</url-pattern>
+  </filter-mapping>
+</web-app>

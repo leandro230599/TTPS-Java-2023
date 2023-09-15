@@ -46,13 +46,13 @@ public class Menu extends HttpServlet {
 		} else {
 			out.println("<title> "+(user.isEsAdmin() ? "Administrador" : "Publicador")+" </title>");
 			out.println("</head><body>");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Encabezado");
+			if (dispatcher != null) {
+				dispatcher.include(request, response); 
+			}
 			out.println("<h1> "+(user.isEsAdmin() ? "Administrador" : "Publicador")+" </h1>");
 			out.println("<h4> "+(user.isEsAdmin() ? msjAdmin : msjPubli)+" </h4>");
 			out.println("</body></html>");
-		}
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Encabezado");
-		if (dispatcher != null) {
-			 dispatcher.include(request, response); 
 		}
 	}
 

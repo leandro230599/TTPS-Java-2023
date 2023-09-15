@@ -1,6 +1,7 @@
 package ttps.clasificados;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -16,12 +17,12 @@ import javax.servlet.http.HttpServletResponse;
 public class Encabezado extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    ServletContext contexto = this.getServletContext();
+    // ServletContext contexto = this.getServletContext();
     SitioClasificado sitio;
 	
     public Encabezado() {
         super();
-        sitio = (SitioClasificado) this.contexto.getAttribute("sitioObject");
+        // sitio = (SitioClasificado) this.getServletContext().getAttribute("sitioObject");
     }
 
 	/**
@@ -29,7 +30,11 @@ public class Encabezado extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-        System.out.println("PROBANDO "+sitio.getEmail());
+		ServletContext contexto = request.getServletContext();
+		SitioClasificado sitio = (SitioClasificado) contexto.getAttribute("sitioObject");
+		PrintWriter out = response.getWriter();
+        // System.out.println("PROBANDO "+sitio.getEmail());
+        out.println("<header> <h1> Probando INCLUDE "+sitio.getName()+"</h1> </header>");
 	}
 
 	/**

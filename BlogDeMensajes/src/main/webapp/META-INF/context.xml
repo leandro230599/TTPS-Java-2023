@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context debug="5" reloadable="true" crossContext="true">
+	<Resource name="jdbc/MySQLDS" auth="Container" type="javax.sql.DataSource"
+	maxActive="100" maxIdle="30" maxWait="10000"
+	username="sql10648374" password="TQqu5jS7VN"
+	driverClassName="com.mysql.cj.jdbc.Driver"
+	url="jdbc:mysql://sql10.freemysqlhosting.net:3306/sql10648374"/>
+</Context>

@@ -10,8 +10,28 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <resource-ref>
-	<res-ref-name>jdbc/MySQLDS</res-ref-name>
-	<res-type>javax.sql.DataSource</res-type>
-	<res-auth>Container</res-auth>
+    <res-ref-name>jdbc/MySQLDS</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+    <res-auth>Container</res-auth>
   </resource-ref>
+  <servlet>
+    <description></description>
+    <display-name>VisualizarMensajes</display-name>
+    <servlet-name>VisualizarMensajes</servlet-name>
+    <servlet-class>servlets.VisualizarMensajes</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>VisualizarMensajes</servlet-name>
+    <url-pattern>/VisualizarMensajes</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GuardarMensaje</display-name>
+    <servlet-name>GuardarMensaje</servlet-name>
+    <servlet-class>servlets.GuardarMensaje</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GuardarMensaje</servlet-name>
+    <url-pattern>/GuardarMensaje</url-pattern>
+  </servlet-mapping>
 </web-app>

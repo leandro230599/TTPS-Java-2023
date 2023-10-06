@@ -2,7 +2,7 @@
 <Context debug="5" reloadable="true" crossContext="true">
 	<Resource name="jdbc/MySQLDS" auth="Container" type="javax.sql.DataSource"
 	maxActive="100" maxIdle="30" maxWait="10000"
-	username="sql10648374" password="TQqu5jS7VN"
+	username="usersql230599" password="Cross123"
 	driverClassName="com.mysql.cj.jdbc.Driver"
-	url="jdbc:mysql://sql10.freemysqlhosting.net:3306/sql10648374"/>
+	url="jdbc:mysql://db4free.net:3306/testsql230599?autoReconnect=true"/>
 </Context>

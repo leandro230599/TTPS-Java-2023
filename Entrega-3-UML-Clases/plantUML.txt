@@ -1,0 +1,61 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Usuarios {
+- id: Long
+- username : String
+- first_name : String
+- last_name : String
+- email : String
+- password : String
+
++ getId() : Long
++ setId(id : Long) : void
++ getUsername() : String
++ setUsername(username : String): void
++ getFirstName(): String
++ setFirstName(firstname : String) : void
++ getLastName(): String
++ setLastName(lastname : String) : void
++ getEmail(): String
++ setEmail(email : String) : void
++ getPassword(): String
++ setPassword(password : String) : void
++ agregarAmigo(username: String) : void
++ crearGrupo(nombre:String, categoria : Categoria) : void
+
+
+
+
+}
+class Grupos {
+- id : Long
+- nombre : String
+
++ getId() : Long
++ setId(id : Long) : void
++ getNombre() : String
++ setNombre(nombre : String) : void
++ getCategoria() : Categoria
++ setCategoria(categoria : Categoria) : void
+}
+class Gasto
+class GastoGrupal
+class GastoPersona
+class Pago
+class PagoGrupal
+class PagoPersona
+class Categoria
+class CatGasto
+class CatGrupo
+
+
+Usuarios --> Usuarios : amigos *..*
+Usuarios --> Usuarios : personasQueCompartoGrupo *..*
+Usuarios --> Usuarios : personasQueCompartiGrupo *..*
+Usuarios --> Usuarios : solicitudesAmistad 1..*
+Usuarios --> Grupos : grupos *..*
+Grupos --> Categoria : categoria *..1
+
+hide circle
+@enduml

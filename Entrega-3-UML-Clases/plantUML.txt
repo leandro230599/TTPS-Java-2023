@@ -9,6 +9,7 @@ class Usuarios {
 - email : String
 - password : String
 
++ Usuarios (id : Long, username : String, first_name : String, last_name : String, email : String, password : String) : Usuarios
 + getId() : Long
 + setId(id : Long) : void
 + getUsername() : String
@@ -21,41 +22,125 @@ class Usuarios {
 + setEmail(email : String) : void
 + getPassword(): String
 + setPassword(password : String) : void
++ getAmigos() : Usuarios[*]
++ getPersonasQueCompartiGrupo() : Usuarios[*]
++ getSolicitudesAmistad() : Usuarios[*]
++ getGastoPersonas() : Gasto[*]
++ getGrupos() : Grupos[*]
++ getDeudas() : Deuda[*]
++ getPagos() : Pago[*]
 + agregarAmigo(username: String) : void
 + crearGrupo(nombre:String, categoria : Categoria) : void
-
-
-
-
++ crearGastoPersona(gasto : Gasto) : void
++ crearPago(Pago pago) : void
 }
+
 class Grupos {
 - id : Long
 - nombre : String
 
++ Grupos (id : Long, nombre : String) : Grupos
 + getId() : Long
 + setId(id : Long) : void
 + getNombre() : String
 + setNombre(nombre : String) : void
 + getCategoria() : Categoria
 + setCategoria(categoria : Categoria) : void
++ invitarAGrupo(username : String) : void
++ agregarAGrupo(username : String) : void
++ editarInformacion(nombre : String, categoria : Categoria) : void
++ crearGasto (gasto : Gasto) : void
++ getMiembros() : Usuarios[*]
++ getGastoGrupal() : Gasto[*]
 }
-class Gasto
-class GastoGrupal
-class GastoPersona
-class Pago
-class PagoGrupal
-class PagoPersona
-class Categoria
-class CatGasto
-class CatGrupo
+class Gasto {
+- id : Long
+- userGasto : String
+- fecha : Date
+- monto : Real
+- tipo : String
 
++ Gasto (id : Long, userGasto : String, fecha : Date, monto : Real, categoria : Categoria, tipo : String, formaDividir : FormaDividir) : Gasto
++ getId() : Long
++ setId(id : Long) : void
++ getUserGasto() : String
++ setUserGasto(usergasto : String) : void
++ getFecha() : Date
++ setFecha(fecha : Date) : void
++ getMonto() : Real
++ setMonto(monto : Real) : void
++ getTipo() : String
++ setTipo(tipo : String) : void
++ getFormaDividir() : FormaDividir
+}
 
-Usuarios --> Usuarios : amigos *..*
-Usuarios --> Usuarios : personasQueCompartoGrupo *..*
-Usuarios --> Usuarios : personasQueCompartiGrupo *..*
-Usuarios --> Usuarios : solicitudesAmistad 1..*
-Usuarios --> Grupos : grupos *..*
-Grupos --> Categoria : categoria *..1
+class Pago {
+- id : Long
+- userPago : String
+- monto : Real
+- tipo : String
+
++ Pago (id : Long, userPago : String, monto : Real, tipo : String) : Pago
++ getId() : Long
++ setId(id : Long) : void
++ getUserPago() : String
++ setUserPago(userpago : String) : void
++ getMonto() : Real
++ setMonto(monto : Real) : void
++ getTipo() : String
++ setTipo(tipo : String) : void
+}
+class Categoria {
+- id : Long
+- nombre : String
+- imagenURL : String
+- tipo : String
+
++ Categoria (id : Long, nombre : String, imagenURL : String, tipo : String) : Categoria
++ getId() : Long
++ setId(id : Long) : void
++ getNombre() : String
++ setNombre(nombre : String) : void
++ getImagen(): Imagen
++ setImagen(imagen : Imagen) : void
++ getTipo() : String
++ setTipo(tipo : String) : void
+}
+
+class Deuda {
+- id: Long
+- tipo : String
+- idGrupoPersona : Long
+- monto : double
+
++ Deuda (id : Long, tipo : String, idGrupoPersona : Long, monto : Real) : Deuda
++ getId() : Long
++ setId(id : Long) : void
++ getTipo() : String
++ setTipo(tipo : String): void
++ getIdGrupoPersona() : Long
++ setIdGrupoPersona(id : Long) : void
++ getMonto(): Real
++ setMonto(monto : Real) : void
+}
+
+class FormaDividir {
++ dividirGasto(tipo : String) : Real
+}
+
+Usuarios --> Usuarios : amigos 0..*
+Usuarios --> Usuarios : personasQueCompartiGrupo 0..*
+Usuarios --> Usuarios : solicitudesAmistad 0..*
+Usuarios --> Gasto : gastoPersonas 0..*
+Usuarios --> Grupos : grupos 0..*
+Usuarios --> Deuda : deudas 0..*
+Usuarios --> Pago : pagos 0..*
+Grupos --> Usuarios : miembros 1..*
+Grupos --> Categoria : categoria
+Grupos --> Gasto : gastoGrupal 0..*
+Gasto --> Usuarios : miembrosGasto 1..*
+Gasto --> Categoria : categoria
+Gasto --> FormaDividir : formaDividirGasto
 
 hide circle
 @enduml

@@ -1,5 +1,6 @@
 package clasesModelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -24,7 +25,10 @@ public class Grupos {
 	@OneToMany(mappedBy="gastoGrupo")
 	private List<Gasto> gastoGrupal;
 	
-	public Grupos () {}
+	public Grupos () {
+		this.miembros = new ArrayList<Usuarios>();
+		this.gastoGrupal = new ArrayList<Gasto>();
+	}
 	
 	public List<Usuarios> getMiembros() {
 		return miembros;

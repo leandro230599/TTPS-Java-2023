@@ -1,5 +1,6 @@
 package clasesModelo;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 
@@ -72,7 +73,15 @@ public class Usuarios {
     
     
 	
-	public Usuarios () {}
+	public Usuarios () {
+		this.amigos = new ArrayList<Usuarios>();
+		this.personasQueCompartiGrupo = new ArrayList<Usuarios>();
+		this.solicitudesAmistad = new ArrayList<Usuarios>();
+		this.gastoPersonas = new ArrayList<Gasto>();
+		this.grupos = new ArrayList<Grupos>();
+		this.deudas = new ArrayList<Deuda>();
+		this.pagos = new ArrayList<Pago>();
+	}
 	
 	public Long getId() {
 		return id;

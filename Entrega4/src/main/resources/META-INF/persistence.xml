@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+	 http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+	 version="2.1">
+	 
+<persistence-unit name="miUP">
+	 <provider>org.hibernate.ejb.HibernatePersistence</provider>
+	 <class>clasesModelo.Usuarios</class>
+	 <class>clasesModelo.Categoria</class>
+	 <class>clasesModelo.Deuda</class>
+	 <class>clasesModelo.FormaDividir</class>
+	 <class>clasesModelo.Gasto</class>
+	 <class>clasesModelo.Grupos</class>
+	 <class>clasesModelo.Pago</class>
+	 <properties>
+		 <!--<property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
+		 <property name="hibernate.connection.password" value="pwd6"/>
+		 <property name="hibernate.connection.url" value="jdbc:mysql://mysql.java.linti.unlp.edu.ar/ttps_sala_bd6?useSSL=FALSE"/>
+		 <property name="hibernate.connection.username" value="usr6" />
+		 <property name="hibernate.default_schema" value="stock" />
+		 <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
+		 <property name="hibernate.hbm2ddl.auto" value="create"/> -->
+		 <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
+		 <property name="hibernate.connection.password" value=""/>
+		 <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/cuentas_claras"/>
+		 <property name="hibernate.connection.username" value="root" />
+		 <property name="hibernate.default_schema" value="stock" />
+		 <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
+		 <property name="hibernate.hbm2ddl.auto" value="update"/>
+	 </properties>
+</persistence-unit>
+</persistence>

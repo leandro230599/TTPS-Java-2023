@@ -1,10 +1,20 @@
 package clasesModelo;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="Categorias")
 public class Categoria {
+	
+	@Id @GeneratedValue
+	@Column(name="categoria_id")
 	private Long id;
+	
 	private String nombre;
 	private String imagenURL;
 	private String tipo;
+	
+	public Categoria () {}
 	
 	public Long getId() {
 		return id;

@@ -1,7 +1,20 @@
 package clasesModelo;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="FormasDividir")
 public class FormaDividir {
-	public double dividirGasto(String tipo) {
+	
+	@Id @GeneratedValue
+	@Column(name="formaDividir_id")
+	private Long id;
+	
+	private String nombre;
+	
+	public FormaDividir () {}
+	
+	public double dividirGasto(Long id) {
 		return 0;
 	}
 }

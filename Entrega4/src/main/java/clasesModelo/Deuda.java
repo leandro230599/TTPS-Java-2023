@@ -1,10 +1,24 @@
 package clasesModelo;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="Deudas")
 public class Deuda {
+	
+	@Id @GeneratedValue
+	@Column(name="deuda_id")
 	private Long id;
+	
 	private String tipo;
 	private Long idGrupoPersona;
 	private double monto;
+	
+	@ManyToOne
+	@JoinColumn(name="deuda_persona_id")
+	private Usuarios deudaPersona;
+	
+	public Deuda () {}
 	
 	public double getMonto() {
 		return monto;

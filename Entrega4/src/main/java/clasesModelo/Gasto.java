@@ -2,15 +2,41 @@ package clasesModelo;
 
 import java.util.Date;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="Gastos")
 public class Gasto {
+	
+	@Id @GeneratedValue
+	@Column(name="gasto_id")
 	private Long id;
+	
 	private String userGasto;
 	private Date fecha;
 	private double monto;
+	
+	@OneToOne
+    @JoinColumn(name = "categoria_id")
 	private Categoria categoria;
+	
 	private String tipo;
+	
+	@OneToOne
+    @JoinColumn(name = "forma_dividir_id")
 	private FormaDividir formaDividir;
 	
+	@ManyToOne
+	@JoinColumn(name="gasto_persona_id")
+	private Usuarios gastoPersona;
+	
+	@ManyToOne
+	@JoinColumn(name="gasto_grupo_id")
+	private Usuarios gastoGrupo;
+	
+	public Gasto () {}
+	
+	// REVISAR SI QUITARLO Y USAR LOS SETTERS
 	public Gasto(Long id, String userGasto, Date fecha, double monto, Categoria categoria, String tipo,
 			FormaDividir formaDividir) {
 		super();

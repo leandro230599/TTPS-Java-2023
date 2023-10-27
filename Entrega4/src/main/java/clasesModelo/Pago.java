@@ -1,10 +1,24 @@
 package clasesModelo;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="Pagos")
 public class Pago {
+	
+	@Id @GeneratedValue
+	@Column(name="pago_id")
 	private Long id;
+	
 	private String userPago;
 	private double monto;
 	private String tipo;
+	
+	@ManyToOne
+	@JoinColumn(name="pago_persona_id")
+	private Usuarios pagoPersona;
+	
+	public Pago () {}
 	
 	public Long getId() {
 		return id;

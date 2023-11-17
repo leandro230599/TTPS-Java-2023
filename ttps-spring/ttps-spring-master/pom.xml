@@ -20,6 +20,11 @@
 			<version>2.2</version>
 		</dependency>
 		<dependency>
+		    <groupId>jakarta.persistence</groupId>
+		    <artifactId>jakarta.persistence-api</artifactId>
+		    <version>3.1.0</version>
+		</dependency>
+		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.11</version>
@@ -27,7 +32,8 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>5.4.6.Final</version>
+			<!-- <version>5.4.6.Final</version> -->
+			<version>6.2.10.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -44,8 +50,7 @@
 			<artifactId>jackson-annotations</artifactId>
 			<version>2.9.6</version>
 		</dependency>
-		<!--
-		https://mvnrepository.com/artifact/org.springframework -->
+		<!-- https://mvnrepository.com/artifact/org.springframework -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>

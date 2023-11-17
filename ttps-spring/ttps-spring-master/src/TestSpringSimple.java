@@ -7,6 +7,7 @@ public class TestSpringSimple {
  AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
 
 //registra una o más componentes que serán procesadas
+ System.out.println("ejecuta main");
 ctx.register(ttps.spring.config.PersistenceConfig.class);
 //Busca clases anotadas en el paquete base pasado por parámetro
 ctx.scan("ttps.spring");

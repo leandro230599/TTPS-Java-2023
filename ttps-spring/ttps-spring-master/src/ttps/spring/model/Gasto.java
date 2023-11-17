@@ -2,7 +2,7 @@ package ttps.spring.model;
 
 import java.util.Date;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name="Gastos")
@@ -32,7 +32,7 @@ public class Gasto {
 	
 	@ManyToOne
 	@JoinColumn(name="gasto_grupo_id")
-	private Usuarios gastoGrupo;
+	private Grupos gastoGrupo;
 	
 	public Gasto () {}
 	

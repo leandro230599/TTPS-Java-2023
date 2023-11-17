@@ -3,7 +3,7 @@ package ttps.spring.config;
 
 import java.util.Properties;
 
-import javax.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
@@ -46,7 +46,7 @@ public class PersistenceConfig {
 	@Bean
 	public PlatformTransactionManager transactionManager(EntityManagerFactory emf){
 		JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
-		//jpaTransactionManager.setEntityManagerFactory(emf);
+		jpaTransactionManager.setEntityManagerFactory(emf);
 		return jpaTransactionManager;
 	}
 	
@@ -54,7 +54,8 @@ public class PersistenceConfig {
 	private Properties additionalProperties() {
 		Properties properties = new Properties();		
 		properties.setProperty("hibernate.hbm2ddl.auto", "update");
-		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
+		//properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
+		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
 		properties.setProperty("hibernate.default_schema", "stock");
 		return properties;
 	}

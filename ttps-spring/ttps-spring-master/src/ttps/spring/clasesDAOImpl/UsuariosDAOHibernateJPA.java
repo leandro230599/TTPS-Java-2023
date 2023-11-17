@@ -5,7 +5,7 @@ import ttps.spring.model.Categoria;
 import ttps.spring.model.Grupos;
 import ttps.spring.model.Usuarios;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import org.springframework.stereotype.Repository;
 

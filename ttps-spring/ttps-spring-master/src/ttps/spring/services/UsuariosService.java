@@ -3,6 +3,8 @@ package ttps.spring.services;
 import ttps.spring.clasesDAO.UsuariosDAO;
 import ttps.spring.model.Usuarios;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,5 +32,13 @@ public class UsuariosService {
 	
 	public Usuarios crearUsuario(String username, String first_name, String last_name, String email, String password) {
 		return this.userDAO.crearUsuario(username, first_name, last_name, email, password);
+	}
+	
+	public Usuarios recuperarPorId(Long id) {
+		return this.userDAO.recuperar(id);
+	}
+	public void crearGastoPersona(Long idCat, Date fecha, double monto, Long idUser, Long idFD, int fdV,
+			Long idGrupoPersona) {
+		this.userDAO.crearGastoPersona(idCat, fecha, monto, idUser, idFD, fdV, idGrupoPersona);
 	}
 }

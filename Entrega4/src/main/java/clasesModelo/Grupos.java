@@ -65,4 +65,15 @@ public class Grupos {
 	public void agregarAGrupo(String username) {}
 	public void editarInformacion(String nombre, Categoria categoria) {}
 	public void crearGasto(Gasto gasto) {}
+	
+	@Override
+	public boolean equals(Object grupo){
+		Grupos aux = (Grupos) grupo;
+	    if(this.id.equals(aux.getId())){
+	        return true;
+	    }
+	    else{
+	        return false;
+	    }
+	}
 }

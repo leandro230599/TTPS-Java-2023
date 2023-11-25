@@ -1,12 +1,15 @@
 package ttps.spring.model;
 
+import java.util.Date;
+
 import jakarta.persistence.*;
 
 @Entity
 @Table(name="Deudas")
 public class Deuda {
 	
-	@Id @GeneratedValue
+	@Id 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="deuda_id")
 	private Long id;
 	
@@ -43,6 +46,14 @@ public class Deuda {
 	}
 	public void setIdGrupoPersona(Long idGrupoPersona) {
 		this.idGrupoPersona = idGrupoPersona;
+	}
+	
+	public Deuda crearDeuda(Long idGrupoPersona, double monto, String tipo, Usuarios user) {
+		this.idGrupoPersona = idGrupoPersona;
+		this.monto = monto;
+		this.tipo = tipo;
+		this.deudaPersona = user;
+		return this;
 	}
 	
 	

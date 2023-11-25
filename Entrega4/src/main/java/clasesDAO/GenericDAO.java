@@ -9,6 +9,6 @@ public interface GenericDAO<T> {
 	public void borrar(T entity);
 	public T borrar(Long id);
 	public boolean existe(Long id);
-	public T recuperar(Serializable id);
+	public T recuperar(Long id);
 	public List<T> recuperarTodos(String column);
 }

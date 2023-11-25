@@ -15,20 +15,20 @@
 	 <class>clasesModelo.Grupos</class>
 	 <class>clasesModelo.Pago</class>
 	 <properties>
-		 <!--<property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
+		 <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
 		 <property name="hibernate.connection.password" value="pwd6"/>
 		 <property name="hibernate.connection.url" value="jdbc:mysql://mysql.java.linti.unlp.edu.ar/ttps_sala_bd6?useSSL=FALSE"/>
 		 <property name="hibernate.connection.username" value="usr6" />
 		 <property name="hibernate.default_schema" value="stock" />
 		 <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
-		 <property name="hibernate.hbm2ddl.auto" value="create"/> -->
-		 <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
+		 <property name="hibernate.hbm2ddl.auto" value="update"/>
+		 <!--  <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
 		 <property name="hibernate.connection.password" value=""/>
 		 <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/cuentas_claras"/>
 		 <property name="hibernate.connection.username" value="root" />
 		 <property name="hibernate.default_schema" value="stock" />
 		 <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
-		 <property name="hibernate.hbm2ddl.auto" value="update"/>
+		 <property name="hibernate.hbm2ddl.auto" value="update"/> -->
 	 </properties>
 </persistence-unit>
 </persistence>

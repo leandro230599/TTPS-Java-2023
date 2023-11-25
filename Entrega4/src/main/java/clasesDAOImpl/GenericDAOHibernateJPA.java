@@ -25,28 +25,19 @@ public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 	
 	@Override
 	public T persistir(T entity) {
-		/*EntityManager em = EMF.getEMF().createEntityManager();
-		EntityTransaction tx = null;*/
-		EntityManagerFactory entityManagerFactory=Persistence.createEntityManagerFactory("miUP");
-		EntityManager entityManager=entityManagerFactory.createEntityManager();
+		EntityManager em = EMF.getEMF().createEntityManager();
+		EntityTransaction tx = null;
 		try {
-			/*tx = em.getTransaction();
+			tx = em.getTransaction();
 			tx.begin();
 			em.persist(entity);
-			System.out.println("Se guarda");
-			tx.commit(); */
-		    entityManager.getTransaction().begin();
-		    entityManager.persist(entity);
-		    entityManager.getTransaction().commit();
+			tx.commit();
 		} catch (RuntimeException e) {
-			/*if (tx != null && tx.isActive())
-				tx.rollback();*/
-			System.out.println("NO SE GUARDO");
+			if (tx != null && tx.isActive())
+				tx.rollback();
 			throw e; // escribir en un log o mostrar un mensaje
 		} finally {
-			//em.close();
-		    entityManager.close();
-		    entityManagerFactory.close();
+			em.close();
 		}
 		return entity;
 	}
@@ -114,7 +105,7 @@ public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 	}
 
 	@Override
-	public T recuperar(Serializable id) {
+	public T recuperar(Long id) {
 		 Query consulta = EMF.getEMF().createEntityManager()
 				 					  .createQuery("SELECT t FROM "+getPersistentClass().getSimpleName()
 				 							  	  +" t WHERE t.id = :id");

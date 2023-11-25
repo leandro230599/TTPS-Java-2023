@@ -194,9 +194,38 @@ public class Usuarios {
 		this.grupos.add(grupo);
 		grupo.getMiembros().add(this);
 		return grupo;
-		
 	}
+	
+	public boolean agregarAGrupo(Usuarios user, Grupos grupo) {
+		if (this.grupos.contains(grupo) && this.amigos.contains(user)) {
+			grupo.getMiembros().add(user);
+			user.getGrupos().add(grupo);
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean salirseDeGrupo(Grupos grupo) {
+		if (this.grupos.contains(grupo)) {
+			grupo.getMiembros().remove(this);
+			this.grupos.remove(grupo);
+			return true;
+		}
+		return false;
+	}
+	
 	public void crearGastoPersona(Gasto gasto) {}
 	public void crearPago(Pago pago) {}
+	
+	@Override
+	public boolean equals(Object user){
+		Usuarios aux = (Usuarios) user;
+	    if(this.id.equals(aux.getId())){
+	        return true;
+	    }
+	    else{
+	        return false;
+	    }
+	}
 
 }

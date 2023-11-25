@@ -1,11 +1,16 @@
 package ttps.spring.clasesDAOImpl;
 
+import ttps.spring.clasesDAO.FactoryDAO;
+import ttps.spring.clasesDAO.GastoDAO;
 import ttps.spring.clasesDAO.UsuariosDAO;
 import ttps.spring.model.Categoria;
 import ttps.spring.model.Grupos;
 import ttps.spring.model.Usuarios;
 
 import jakarta.persistence.*;
+
+import java.sql.SQLException;
+import java.util.Date;
 
 import org.springframework.stereotype.Repository;
 
@@ -18,11 +23,16 @@ public class UsuariosDAOHibernateJPA extends GenericDAOHibernateJPA<Usuarios> im
 
 	@Override
 	public Usuarios recuperarPorEmailYPassword(String email, String password) {
+		Usuarios resultado;
 		Query consulta = this.getEntityManager()
-									 .createQuery("FROM Usuarios u WHERE u.email = :email AND u.password = :password");
+				.createQuery("FROM Usuarios u WHERE u.email = :email AND u.password = :password");
 		consulta.setParameter("email", email);
 		consulta.setParameter("password", password);
-		Usuarios resultado = (Usuarios) consulta.getSingleResult();
+		try {
+			resultado = (Usuarios) consulta.getSingleResult();							
+		} catch (NoResultException e) {
+			resultado = null;
+		}
 		return resultado;
 	}
 
@@ -53,6 +63,13 @@ public class UsuariosDAOHibernateJPA extends GenericDAOHibernateJPA<Usuarios> im
 		user.crearUsuario(username, first_name, last_name, email, password);
 		this.persistir(user);
 		return user;
+	}
+
+	@Override
+	public void crearGastoPersona(Long idCat, Date fecha, double monto, Long idUser, Long idFD, int fdV,
+			Long idGrupoPersona) {
+		GastoDAO gastoDAO = FactoryDAO.getGastoDAO();
+		gastoDAO.crearGasto(idCat, fecha, monto, idUser, "persona", idFD, fdV, idGrupoPersona);
 	}
 
 }

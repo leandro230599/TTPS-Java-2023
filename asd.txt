@@ -1,0 +1,42 @@
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{
+  "username":"Wolf",
+  "first_name":"William",
+  "last_name":"Bailey",
+  "email":"wbb@gmail.com",
+  "password":"Bloss"
+}' \
+  http://localhost:8080/ttps-spring/usuario/registrarUsuario
+
+-----------------------------------------------------------------------------------------------
+
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{
+  "email":"soldier123@gmail.com",
+  "password":"Caporal123"
+}' \
+  http://localhost:8080/ttps-spring/usuario/login
+
+-----------------------------------------------------------------------------------------------
+
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{
+  "nombre":" A Narnia",
+  "idCat":"1",
+  "idUser": ""
+}' \
+  http://localhost:8080/ttps-spring/grupo/crearGrupo
+
+-----------------------------------------------------------------------------------------------
+
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{
+  "nombre":" A Narnia",
+  "idCat":"1",
+  "idUser": ""
+}' \
+  http://localhost:8080/ttps-spring/grupo/actualizar

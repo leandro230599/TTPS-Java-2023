@@ -8,11 +8,12 @@ import jakarta.persistence.*;
 @Table(name="Gastos")
 public class Gasto {
 	
-	@Id @GeneratedValue
+	@Id 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="gasto_id")
 	private Long id;
 	
-	private String userGasto;
+	private Long userGasto;
 	private Date fecha;
 	private double monto;
 	
@@ -26,6 +27,8 @@ public class Gasto {
     @JoinColumn(name = "forma_dividir_id")
 	private FormaDividir formaDividir;
 	
+	private int fmValor;
+	
 	@ManyToOne
 	@JoinColumn(name="gasto_persona_id")
 	private Usuarios gastoPersona;
@@ -36,28 +39,16 @@ public class Gasto {
 	
 	public Gasto () {}
 	
-	// REVISAR SI QUITARLO Y USAR LOS SETTERS
-	public Gasto(Long id, String userGasto, Date fecha, double monto, Categoria categoria, String tipo,
-			FormaDividir formaDividir) {
-		super();
-		this.id = id;
-		this.userGasto = userGasto;
-		this.fecha = fecha;
-		this.monto = monto;
-		this.categoria = categoria;
-		this.tipo = tipo;
-		this.formaDividir = formaDividir;
-	}
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getUserGasto() {
+	public Long getUserGasto() {
 		return userGasto;
 	}
-	public void setUserGasto(String userGasto) {
+	public void setUserGasto(Long userGasto) {
 		this.userGasto = userGasto;
 	}
 	public Date getFecha() {
@@ -86,5 +77,33 @@ public class Gasto {
 	}
 	public FormaDividir getFormaDividir() {
 		return formaDividir;
+	}
+	
+	public int getFDValor() {
+		return fmValor;
+	}
+	public void setFDValor(int valor) {
+		this.fmValor = valor;
+	}
+	
+	public Gasto crearGasto(Long idUser, 
+						    Date fecha, 
+						    double monto, 
+						    Categoria categoria, 
+						    String tipo, 
+						    FormaDividir fd, 
+						    int fdV, 
+						    Usuarios user,
+						    Grupos grupo) {
+		this.userGasto = idUser;
+		this.fecha = fecha;
+		this.monto = monto;
+		this.categoria = categoria;
+		this.tipo = tipo;
+		this.formaDividir = fd;
+		this.fmValor = fdV;
+		this.gastoPersona = user;
+		this.gastoGrupo = grupo;
+		return this;
 	}
 }

@@ -1,13 +1,14 @@
 package ttps.spring.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
 @Table(name="Pagos")
 public class Pago {
 	
-	@Id 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="pago_id")
 	private Long id;
 	

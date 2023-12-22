@@ -1,0 +1,80 @@
+<div class="container _padding-top">
+    <!-- Example row of columns -->
+    <div class="row">
+        <div class="offset-md-3 col-md-6 offset-md-3">
+            <div class="alert {{classstatus}}" role="alert">{{status}}</div>
+            <form #registroForm="ngForm" (ngSubmit)="onSubmit(registroForm)" class="form-horizontal">
+                <div class="row">    
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name" class="cols-sm-2 control-label">Nombre</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="nombre" id="nombre"ngModel/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="lastname" class="cols-sm-2 control-label">Apellido</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="apellido" id="apellido" ngModel/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="email" class="cols-sm-2 control-label">Email</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="email" id="email" ngModel/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">    
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="username" class="cols-sm-2 control-label">Username</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="username" id="username" ngModel/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="password" class="cols-sm-2 control-label">Contraseña</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <input type="password" class="form-control" name="password" id="password" ngModel/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <button type="submit" class="btn btn-primary  btn-lg btn-block">Registrarse</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <button type="reset" class="btn btn-secondary btn-lg btn-block">Vaciar Campos</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> <!-- /container -->

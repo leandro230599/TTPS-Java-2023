@@ -2,13 +2,16 @@ package ttps.spring.model;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
 @Table(name="Usuarios")
 public class Usuarios {
 	
-	@Id @GeneratedValue
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="usuario_id")
 	private Long id;
 	
@@ -16,9 +19,11 @@ public class Usuarios {
 	private String first_name;
 	private String last_name;
 	private String email;
+	
+	@JsonIgnore
 	private String password;
 	
-    @ManyToMany
+    @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(
         name = "Amigos",
         joinColumns = @JoinColumn(name = "usuario_id",
@@ -26,9 +31,10 @@ public class Usuarios {
         inverseJoinColumns = @JoinColumn(name = "amigo_id",
         								 referencedColumnName="usuario_id")
     )
+    @JsonIgnore
 	private List<Usuarios> amigos;
     
-    @ManyToMany
+    @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(
         name = "Compartio_grupo",
         joinColumns = @JoinColumn(name = "usuarioUno_id",
@@ -36,9 +42,10 @@ public class Usuarios {
         inverseJoinColumns = @JoinColumn(name = "usuarioDos_id",
         								 referencedColumnName="usuario_id")
     )
+    @JsonIgnore
 	private List<Usuarios> personasQueCompartiGrupo;
     
-    @ManyToMany
+    @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(
         name = "Solicitudes_amigo",
         joinColumns = @JoinColumn(name = "usuario_id",
@@ -46,25 +53,30 @@ public class Usuarios {
         inverseJoinColumns = @JoinColumn(name = "solicitud_user_id",
         								 referencedColumnName="usuario_id")
     )
+    @JsonIgnore
 	private List<Usuarios> solicitudesAmistad;
     
     
-    @OneToMany(mappedBy="gastoPersona")
+    @OneToMany(mappedBy="gastoPersona", fetch=FetchType.EAGER)
+    @JsonIgnore
 	private List<Gasto> gastoPersonas;
     
-    @ManyToMany
+    @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(
     	name="Usuario_Grupo",
     	joinColumns=@JoinColumn(name="usuario_id",
     							referencedColumnName="usuario_id"),
     	inverseJoinColumns=@JoinColumn(name="grupo_id",
     								   referencedColumnName="grupo_id"))
+    @JsonIgnore
 	private List<Grupos> grupos;
     
-    @OneToMany(mappedBy="deudaPersona")
+    @OneToMany(mappedBy="deudaPersona", fetch=FetchType.EAGER)
+    @JsonIgnore
 	private List<Deuda> deudas;
     
-    @OneToMany(mappedBy="pagoPersona")
+    @OneToMany(mappedBy="pagoPersona", fetch=FetchType.EAGER)
+    @JsonIgnore
 	private List<Pago> pagos;
     
     
@@ -191,12 +203,40 @@ public class Usuarios {
 	public Grupos crearGrupo(String nombre, Categoria categoria) {
 		Grupos grupo = new Grupos();
 		grupo = grupo.crearGrupo(nombre, categoria);
-		this.grupos.add(grupo);
+		this.getGrupos().add(grupo);
 		grupo.getMiembros().add(this);
-		return grupo;
-		
+		return grupo;		
 	}
-	public void crearGastoPersona(Gasto gasto) {}
+	
+	public boolean agregarAGrupo(Grupos grupo) {
+		if (!this.getGrupos().contains(grupo)){
+			grupo.getMiembros().add(this);
+			this.getGrupos().add(grupo);
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean salirseDeGrupo(Grupos grupo) {
+		if (this.getGrupos().contains(grupo)) {
+			grupo.getMiembros().remove(this);
+			this.grupos.remove(grupo);
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public boolean equals(Object user){
+		Usuarios aux = (Usuarios) user;
+	    if(this.id.equals(aux.getId())){
+	        return true;
+	    }
+	    else{
+	        return false;
+	    }
+	}
+	
 	public void crearPago(Pago pago) {}
 
 }

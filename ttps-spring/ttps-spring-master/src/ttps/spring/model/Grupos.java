@@ -3,14 +3,15 @@ package ttps.spring.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
 @Table(name="Grupos")
 public class Grupos {
 	
-	@Id 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="grupo_id")
 	private Long id;
 	
@@ -20,10 +21,10 @@ public class Grupos {
     @JoinColumn(name = "categoria_id")
 	private Categoria categoria;
 	
-	@ManyToMany(mappedBy="grupos")
+	@ManyToMany(mappedBy="grupos", fetch=FetchType.EAGER)
 	private List<Usuarios> miembros;
 	
-	@OneToMany(mappedBy="gastoGrupo")
+	@OneToMany(mappedBy="gastoGrupo", fetch=FetchType.EAGER)
 	private List<Gasto> gastoGrupal;
 	
 	public Grupos () {
@@ -62,11 +63,21 @@ public class Grupos {
 		return this;
 	}
 	
-	public void invitarAGrupo(String username) {}
-	public void agregarAGrupo(String username) {}
+	@Override
+	public boolean equals(Object grupo){
+		Grupos aux = (Grupos) grupo;
+	    if(this.id.equals(aux.getId())){
+	        return true;
+	    }
+	    else{
+	        return false;
+	    }
+	}
 	public void editarInformacion(String nombre, Categoria categoria) {
 		this.setNombre(nombre);
 		this.setCategoria(categoria);
 	}
-	public void crearGasto(Gasto gasto) {}
+	
+	public void invitarAGrupo(String username) {}
+	public void agregarAGrupo(String username) {}
 }

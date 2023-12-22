@@ -8,6 +8,7 @@ import jakarta.persistence.*;
 import org.springframework.transaction.annotation.Transactional;
 
 import ttps.spring.clasesDAO.GenericDAO;
+import ttps.spring.model.Usuarios;
 
 @Transactional
 public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
@@ -16,11 +17,15 @@ public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 	private EntityManager entityManager;
 
 	public GenericDAOHibernateJPA(Class<T> clase) {
-		persistentClass = clase;
+		this.setPersistentClass(clase);
 	}
 
 	public Class<T> getPersistentClass(){
 		return this.persistentClass;
+	}
+	
+	public void setPersistentClass(Class<T> clase) {
+		this.persistentClass = clase;
 	}
 	
 	@Override
@@ -29,7 +34,8 @@ public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 		this.flushAndClear();
 		return entity;
 	}
-
+	
+	@Override
 	public T actualizar(T entity) {
 		this.getEntityManager().merge(entity);
 		this.flushAndClear();
@@ -79,7 +85,12 @@ public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 				 					  .createQuery("SELECT t FROM "+getPersistentClass().getSimpleName()
 				 							  	  +" t WHERE t.id = :id");
 		 consulta.setParameter("id", id);
-		 T resultado = (T) consulta.getSingleResult();
+		 T resultado;
+		 try {
+		 	resultado = (T) consulta.getSingleResult();							
+		 } catch (NoResultException e) {
+		 	resultado = null;
+		 }
 		 return resultado;
 	}
 

@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" routerLink="/index">{{title}}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+        aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/index">Inicio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/registro">Registro</a>
+            </li>
+            
+            <!-- <li class="nav-item dropdown" *ngIf="login.logged"> 
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">Menú</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01" *ngIf="login.getRol() == 'VETERINARIO'">
+                    <a class="dropdown-item" routerLink="/visitas">Listar Registros</a>
+                    <a class="dropdown-item" routerLink="/buscarmascotas">Búsqueda Mascotas</a>
+                    <a class="dropdown-item" routerLink="/altavisitaveterinario">Alta Visita Veterinario</a>
+                    <a class="dropdown-item" routerLink="/altavei">Alta Vacuna, Enfermedad, Intervencion Quirurgica</a>
+                    <a class="dropdown-item" routerLink="/altahistorialreproductivo">Alta Historial Reproductivo</a>
+                    <a class="dropdown-item" routerLink="/altadesparasitacion">Alta Desparasitaciones</a>
+                    <a class="dropdown-item" routerLink="/aceptarmascotas">Aceptar Atención Mascotas</a>
+                </div>
+                <div class="dropdown-menu" aria-labelledby="dropdown01" *ngIf="login.getRol() == 'DUENO'">
+                    <a class="dropdown-item" routerLink="/gestionarmascotas">Gestionar Mascotas</a>
+                    <a class="dropdown-item" routerLink="/agregarmascota">Dar de Alta una Mascota</a>
+                    <a class="dropdown-item" routerLink="/asignarveterinario">Asignar Veterinario a una Mascota</a>
+                    <a class="dropdown-item" routerLink="/agregarrecordatorio">Agregar Recordatorio</a>
+                    <a class="dropdown-item" routerLink="/listarrecordatorios">Listar Recordatorios</a>
+                </div>
+                <div class="dropdown-menu" aria-labelledby="dropdown01" *ngIf="login.getRol() == 'ADMINISTRADOR'">
+                    <a class="dropdown-item" routerLink="/validarveterinarios">Validar Veterinarios</a>
+                </div>
+            </li> -->
+
+        </ul>
+    </div>
+</nav>

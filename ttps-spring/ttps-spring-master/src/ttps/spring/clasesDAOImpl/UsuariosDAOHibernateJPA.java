@@ -1,6 +1,5 @@
 package ttps.spring.clasesDAOImpl;
 
-import ttps.spring.clasesDAO.FactoryDAO;
 import ttps.spring.clasesDAO.GastoDAO;
 import ttps.spring.clasesDAO.UsuariosDAO;
 import ttps.spring.model.Categoria;
@@ -12,13 +11,21 @@ import jakarta.persistence.*;
 import java.sql.SQLException;
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class UsuariosDAOHibernateJPA extends GenericDAOHibernateJPA<Usuarios> implements UsuariosDAO{
+	
+	private GastoDAO gastoDAO;
 
 	public UsuariosDAOHibernateJPA(){
 		super(Usuarios.class);
+	}
+	
+	@Autowired
+	public void setGastoDAO(GastoDAO gastoDAO) {
+		this.gastoDAO = gastoDAO;
 	}
 
 	@Override
@@ -68,8 +75,27 @@ public class UsuariosDAOHibernateJPA extends GenericDAOHibernateJPA<Usuarios> im
 	@Override
 	public void crearGastoPersona(Long idCat, Date fecha, double monto, Long idUser, Long idFD, int fdV,
 			Long idGrupoPersona) {
-		GastoDAO gastoDAO = FactoryDAO.getGastoDAO();
 		gastoDAO.crearGasto(idCat, fecha, monto, idUser, "persona", idFD, fdV, idGrupoPersona);
+	}
+	
+	@Override
+	public void editarGastoPersona(Long idCat, Date fecha, double monto, Long idUser, Long idFD, int fdV,
+			Long idGrupoPersona, Long idGasto) {
+		gastoDAO.editarGasto(idCat,fecha, monto, idUser, "persona", idFD, fdV, idGrupoPersona, idGasto);
+	}
+	
+	@Override
+	public Usuarios recuperarPorUsername(String username) {
+		Usuarios resultado;
+		Query consulta = this.getEntityManager()
+				.createQuery("FROM Usuarios u WHERE u.username = :username");
+		consulta.setParameter("username", username);
+		try {
+			resultado = (Usuarios) consulta.getSingleResult();							
+		} catch (NoResultException e) {
+			resultado = null;
+		}
+		return resultado;
 	}
 
 }

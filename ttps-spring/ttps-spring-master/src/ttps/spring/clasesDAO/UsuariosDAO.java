@@ -14,4 +14,7 @@ public interface UsuariosDAO extends GenericDAO<Usuarios>{
 	public Usuarios crearUsuario(String username, String first_name, String last_name, String email, String password);
 	public void crearGastoPersona(Long idCat, Date fecha, double monto, Long idUser, Long idFD, int fdV,
 			Long idGrupoPersona);
+	public void editarGastoPersona(Long idCat, Date fecha, double monto, Long idUser, Long idFD, int fdV,
+			Long idGrupoPersona, Long idGasto);
+	public Usuarios recuperarPorUsername(String username);
 }

@@ -8,14 +8,17 @@ import jakarta.persistence.*;
 @Table(name="Deudas")
 public class Deuda {
 	
-	@Id 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="deuda_id")
 	private Long id;
 	
 	private String tipo;
 	private Long idGrupoPersona;
 	private double monto;
+	
+	@OneToOne
+    @JoinColumn(name = "gasto_id")
+	private Gasto gasto;
 	
 	@ManyToOne
 	@JoinColumn(name="deuda_persona_id")
@@ -48,12 +51,17 @@ public class Deuda {
 		this.idGrupoPersona = idGrupoPersona;
 	}
 	
-	public Deuda crearDeuda(Long idGrupoPersona, double monto, String tipo, Usuarios user) {
+	public Deuda crearDeuda(Long idGrupoPersona, double monto, String tipo, Usuarios user, Gasto gasto) {
 		this.idGrupoPersona = idGrupoPersona;
 		this.monto = monto;
 		this.tipo = tipo;
 		this.deudaPersona = user;
+		this.gasto = gasto;
 		return this;
+	}
+	
+	public void actualizarDeuda(double monto) {
+		this.monto = monto;
 	}
 	
 	

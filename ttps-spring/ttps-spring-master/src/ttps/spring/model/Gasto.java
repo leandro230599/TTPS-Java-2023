@@ -2,18 +2,23 @@ package ttps.spring.model;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
 @Table(name="Gastos")
 public class Gasto {
 	
-	@Id 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="gasto_id")
+	@JsonIgnore
 	private Long id;
 	
-	private Long userGasto;
+	@OneToOne
+	@JoinColumn(name = "userGasto_id")
+	private Usuarios userGasto;
+	
 	private Date fecha;
 	private double monto;
 	
@@ -30,11 +35,13 @@ public class Gasto {
 	private int fmValor;
 	
 	@ManyToOne
-	@JoinColumn(name="gasto_persona_id")
+	@JoinColumn(name="gasto_persona_id",  nullable = true)
+	@JsonIgnore
 	private Usuarios gastoPersona;
 	
 	@ManyToOne
-	@JoinColumn(name="gasto_grupo_id")
+	@JoinColumn(name="gasto_grupo_id",  nullable = true)
+	@JsonIgnore
 	private Grupos gastoGrupo;
 	
 	public Gasto () {}
@@ -45,10 +52,10 @@ public class Gasto {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Long getUserGasto() {
+	public Usuarios getUserGasto() {
 		return userGasto;
 	}
-	public void setUserGasto(Long userGasto) {
+	public void setUserGasto(Usuarios userGasto) {
 		this.userGasto = userGasto;
 	}
 	public Date getFecha() {
@@ -86,7 +93,7 @@ public class Gasto {
 		this.fmValor = valor;
 	}
 	
-	public Gasto crearGasto(Long idUser, 
+	public Gasto crearGasto(Usuarios userGasto, 
 						    Date fecha, 
 						    double monto, 
 						    Categoria categoria, 
@@ -95,7 +102,7 @@ public class Gasto {
 						    int fdV, 
 						    Usuarios user,
 						    Grupos grupo) {
-		this.userGasto = idUser;
+		this.userGasto = userGasto;
 		this.fecha = fecha;
 		this.monto = monto;
 		this.categoria = categoria;
@@ -105,5 +112,19 @@ public class Gasto {
 		this.gastoPersona = user;
 		this.gastoGrupo = grupo;
 		return this;
+	}
+	
+	public void editarGasto(Usuarios userGasto, 
+						    Date fecha, 
+						    double monto, 
+						    Categoria categoria, 
+						    FormaDividir fd, 
+						    int fdV) {
+		this.userGasto = userGasto;
+		this.fecha = fecha;
+		this.monto = monto;
+		this.categoria = categoria;
+		this.formaDividir = fd;
+		this.fmValor = fdV;
 	}
 }

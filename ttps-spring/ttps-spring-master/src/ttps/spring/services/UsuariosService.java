@@ -41,4 +41,11 @@ public class UsuariosService {
 			Long idGrupoPersona) {
 		this.userDAO.crearGastoPersona(idCat, fecha, monto, idUser, idFD, fdV, idGrupoPersona);
 	}
+	public void editarGastoPersona(Long idCat, Date fecha, double monto, Long idUser, Long idFD, int fdV, Long idGrupoPersona, Long idGasto) {
+		this.userDAO.editarGastoPersona(idCat, fecha, monto, idUser, idFD, fdV, idGrupoPersona, idGasto);
+	}
+	
+	public Usuarios recuperarPorUsername (String username) {
+		return this.userDAO.recuperarPorUsername(username);
+	}
 }

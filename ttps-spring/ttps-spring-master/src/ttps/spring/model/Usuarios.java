@@ -209,7 +209,7 @@ public class Usuarios {
 	}
 	
 	public boolean agregarAGrupo(Grupos grupo) {
-		if (!this.getGrupos().contains(grupo)){
+		if (!this.perteneceAGrupo(grupo)){
 			grupo.getMiembros().add(this);
 			this.getGrupos().add(grupo);
 			return true;
@@ -218,12 +218,16 @@ public class Usuarios {
 	}
 	
 	public boolean salirseDeGrupo(Grupos grupo) {
-		if (this.getGrupos().contains(grupo)) {
+		if (this.perteneceAGrupo(grupo)) {
 			grupo.getMiembros().remove(this);
 			this.grupos.remove(grupo);
 			return true;
 		}
 		return false;
+	}
+	
+	public boolean perteneceAGrupo(Grupos grupo) {
+		return this.getGrupos().contains(grupo);
 	}
 	
 	@Override

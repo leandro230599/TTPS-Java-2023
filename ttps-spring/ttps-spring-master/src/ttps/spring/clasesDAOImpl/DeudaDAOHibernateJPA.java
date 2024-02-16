@@ -9,15 +9,21 @@ import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
 import ttps.spring.clasesDAO.DeudaDAO;
 import ttps.spring.clasesDAO.UsuariosDAO;
+import ttps.spring.model.Categoria;
 import ttps.spring.model.Deuda;
+import ttps.spring.model.FormaDividir;
 import ttps.spring.model.Gasto;
 import ttps.spring.model.Grupos;
 import ttps.spring.model.Usuarios;
+import ttps.spring.services.UsuariosService;
 
 @Repository
 public class DeudaDAOHibernateJPA extends GenericDAOHibernateJPA<Deuda> implements DeudaDAO{
 	
 	private UsuariosDAO userDAO;
+	
+	@Autowired
+	private UsuariosService userService;
 
 	public DeudaDAOHibernateJPA() {
 		super(Deuda.class);
@@ -131,6 +137,18 @@ public class DeudaDAOHibernateJPA extends GenericDAOHibernateJPA<Deuda> implemen
 					throw new IllegalArgumentException("No era esperado el valor: " + idFD);
 			}
 		}
+	}
+
+	@Override
+	public List<Deuda> getDeudaUser(Long idUser, Long idGrupoPersona,String tipo) {
+		Usuarios user = userService.recuperarPorId(idUser);
+		Query consulta = this.getEntityManager()
+				 .createQuery("FROM Deuda d WHERE d.deudaPersona= :idUser AND d.idGrupoPersona = :idGrupoPersona AND d.tipo = :tipo");
+		consulta.setParameter("idUser", user);
+		consulta.setParameter("idGrupoPersona", idGrupoPersona);
+		consulta.setParameter("tipo", tipo);
+		List<Deuda> resultado = (List<Deuda>) consulta.getResultList();
+		return resultado;
 	}
 	
 }

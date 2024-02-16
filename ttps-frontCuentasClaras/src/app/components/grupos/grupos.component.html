@@ -1,0 +1,15 @@
+<p>grupos works!</p>
+<h1>HOLA GRUPOS</h1>
+<button (click)="btnClick();">Crear grupo</button>
+
+<div *ngIf="error">
+    <!-- Si hay un error, muestra un encabezado con el mensaje de error -->
+    <h2>{{ error }}</h2>
+  </div>
+  
+  <div *ngIf="grupos.length > 0">
+    <!-- Si existen grupos, muestra una lista de botones para cada grupo -->
+    <h2>Grupos:</h2>
+    <button *ngFor="let grupo of grupos" (click)="detallesGrupo(grupo.grupo_id)">{{ grupo.nombre }}</button>
+  </div>
+  

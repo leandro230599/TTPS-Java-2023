@@ -1,6 +1,7 @@
 package ttps.spring.clasesDAOImpl;
 
 import ttps.spring.clasesDAO.GastoDAO;
+import ttps.spring.clasesDAO.GruposDAO;
 import ttps.spring.clasesDAO.UsuariosDAO;
 import ttps.spring.model.Categoria;
 import ttps.spring.model.Grupos;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Repository;
 public class UsuariosDAOHibernateJPA extends GenericDAOHibernateJPA<Usuarios> implements UsuariosDAO{
 	
 	private GastoDAO gastoDAO;
+	private GruposDAO grupoDAO;
 
 	public UsuariosDAOHibernateJPA(){
 		super(Usuarios.class);
@@ -96,6 +98,13 @@ public class UsuariosDAOHibernateJPA extends GenericDAOHibernateJPA<Usuarios> im
 			resultado = null;
 		}
 		return resultado;
+	}
+
+	@Override
+	public boolean userPerteneceAGrupo(Long idUser, Long idGrupo) {
+		Grupos grupo = this.grupoDAO.recuperar(idGrupo);
+		Usuarios user = this.recuperar(idUser);
+		return user.perteneceAGrupo(grupo);
 	}
 
 }

@@ -47,4 +47,7 @@ public class GruposService {
 	public Grupos recuperarPorId(Long idGrupo) {
 		return this.grupoDAO.recuperar(idGrupo);
 	}
+	public List<Grupos> getGrupos(Long idUser){
+		return this.grupoDAO.getGruposUser(idUser);
+	}
 }

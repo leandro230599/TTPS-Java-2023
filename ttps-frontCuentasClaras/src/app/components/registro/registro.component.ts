@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Usuario } from '../../models/usuario';
-import { RegistroService } from '../../services/registro.service';
+import { ApiService } from '../../services/api.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
@@ -23,7 +23,7 @@ export class RegistroComponent implements OnInit {
     nombre: ''
   }*/
 
-  constructor(private registroService: RegistroService) { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
 
@@ -40,7 +40,6 @@ export class RegistroComponent implements OnInit {
     onSubmit(form:NgForm){
       if (this.validar(form)){
         let u = new Usuario();
-        console.log(form.value);
         u.setLastName(form.value.apellido);
         u.setEmail(form.value.email);
         u.setFirstName(form.value.nombre);
@@ -60,7 +59,7 @@ export class RegistroComponent implements OnInit {
       //   }
       // });
       window.scroll(0,0);
-      this.registroService.crearUsuario(u).subscribe( (resp) => {
+      this.apiService.crearUsuario(u).subscribe( (resp) => {
         console.log("resp");
       })
     }

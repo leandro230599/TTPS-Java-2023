@@ -1,0 +1,257 @@
+<div>
+    <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#updateGroup" >Actualizar datos de grupo</button>
+    <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#loadSpent">Cargar gasto en grupo</button>
+    <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addUser">Agregar usuario a grupo</button>
+</div>
+
+<!-- Modal Actualizar datos de grupo-->
+<div class="modal fade" id="updateGroup" tabindex="-1" aria-labelledby="updateGroupLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="updateGroupLabel">Actualizar datos de grupo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form #actualizacionForm="ngForm" (ngSubmit)="onSubmit(actualizacionForm)" class="form-horizontal">
+        <div class="modal-body">
+                <div class="row">    
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="name" class="cols-sm-2 control-label">Nombre</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="nombre" id="nombre"ngModel/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="categoria" class="cols-sm-2 control-label">Categoria</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <select  [(ngModel)]="categoria_id" name="categoria_id" id="categoria_id">
+                                        <option *ngFor="let item of listaCatGrupos" [value]="item.categoria_id">{{ item.nombre }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div> <!-- Cierre del DIV modal-body -->
+        <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div> <!-- Cierre modal Actualizar datos de grupo-->
+
+<!-- Modal cargar gastos en un grupo-->
+<div class="modal fade" id="loadSpent" tabindex="-1" aria-labelledby="loadSpentLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loadSpentLabel">Cargar gasto en grupo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form #loadForm="ngForm" (ngSubmit)="onSubmitLoad(loadForm)" class="form-horizontal">
+        <div class="modal-body">
+                <div class="row">    
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="name" class="cols-sm-2 control-label">Monto</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <input type="number" class="form-control" name="monto" id="monto"ngModel/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="gastos" class="cols-sm-2 control-label">Forma de dividir gastos</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <select  [(ngModel)]="formaDividir_id" name="formaDividir_id" id="formaDividir_id">
+                                        <option *ngFor="let item of listaFD" [value]="item.id">{{ item.nombre }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="categoria" class="cols-sm-2 control-label">Categoria</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <select  [(ngModel)]="categoria_id" name="categoria_id" id="categoria_id">
+                                        <option *ngFor="let item of listaCatGastos" [value]="item.categoria_id">{{ item.nombre }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="fdvalor" class="cols-sm-2 control-label">Monto/Porcentaje por miembro</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <input type="number" class="form-control" placeholder="0" [disabled]="formaDividir_id == 1" name="fdvalor" id="fdvalor" [(ngModel)]="fdValor" [value]="fdValor"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="fdvalor" class="cols-sm-2 control-label">Fecha</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <input type="date" class="form-control" name="fecha" id="fecha"ngModel/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div> <!-- Cierre del DIV modal-body -->
+        <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div> <!-- Cierre modal cargar gastos en un grupo-->
+
+<!-- Modal agregar usuario a un grupo-->
+<div class="modal fade" id="addUser" tabindex="-1" aria-labelledby="addUserLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addUserLabel">Agregar usuario a un grupo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form #loadForm="ngForm" (ngSubmit)="onSubmitAddUser(loadForm)" class="form-horizontal">
+        <div class="modal-body">
+                <div class="row">    
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="name" class="cols-sm-2 control-label">Nombre de usuario</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="username" id="username" [(ngModel)]="username"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div> <!-- Cierre del DIV modal-body -->
+        <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary">Agregar usuario</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div> <!-- Cierre modal agregar usuario a un grupo-->
+
+<div *ngIf="datos; else contenidoVacio" class="container-fluid">
+    <div class="row">
+        <div class="col-md-10 bg-danger"> <!-- Este elemento ocupará el 80%, GASTOS PAGOS -->
+            <div *ngFor="let gasto of datos.gastos">
+                <h5>Gasto de {{gasto.monto}}$ en la categoria {{gasto.categoria.nombre}} con la forma de dividir gasto de {{gasto.formaDividir.nombre}} realizado por {{gasto.userGasto.username}} el dia {{convertirMilisegundosAFecha(gasto.fecha)}}</h5>
+                <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#updateSpent">Editar gasto</button>
+                <!-- Modal actualizar gastos en un grupo-->
+                <div class="modal fade" id="updateSpent" tabindex="-1" aria-labelledby="updateSpentLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="updateSpentLabel">Editar gasto en grupo</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form #updateForm="ngForm" (ngSubmit)="onSubmitUpdateSpent(updateForm,gasto.id)" class="form-horizontal">
+                        <div class="modal-body">
+                                <div class="row">    
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="name" class="cols-sm-2 control-label">Monto</label>
+                                            <div class="cols-sm-10">
+                                                <div class="input-group">
+                                                    <input type="number" class="form-control" name="monto" id="monto"ngModel/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="gastos" class="cols-sm-2 control-label">Forma de dividir gastos</label>
+                                            <div class="cols-sm-10">
+                                                <div class="input-group">
+                                                    <select  [(ngModel)]="formaDividir_id" name="formaDividir_id" id="formaDividir_id">
+                                                        <option *ngFor="let item of listaFD" [value]="item.id">{{ item.nombre }}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="categoria" class="cols-sm-2 control-label">Categoria</label>
+                                            <div class="cols-sm-10">
+                                                <div class="input-group">
+                                                    <select  [(ngModel)]="categoria_id" name="categoria_id" id="categoria_id">
+                                                        <option *ngFor="let item of listaCatGastos" [value]="item.categoria_id">{{ item.nombre }}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="fdvalor" class="cols-sm-2 control-label">Monto/Porcentaje por miembro</label>
+                                            <div class="cols-sm-10">
+                                                <div class="input-group">
+                                                    <input type="number" class="form-control" placeholder="0" [disabled]="formaDividir_id == 1" name="fdvalor" id="fdvalor" [(ngModel)]="fdValor" [value]="fdValor"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="fdvalor" class="cols-sm-2 control-label">Fecha</label>
+                                            <div class="cols-sm-10">
+                                                <div class="input-group">
+                                                    <input type="date" class="form-control" name="fecha" id="fecha"ngModel/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div> <!-- Cierre del DIV modal-body -->
+                        <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="submit" class="btn btn-primary">Actualizar cambios</button>
+                        </div>
+                        </form>
+                    </div>
+                    </div>
+                </div> <!-- Cierre modal actualizar gastos en un grupo-->
+            </div>
+        </div>
+        <div class="col-md-2 bg-secondary"> <!-- Este elemento ocupará el 20%, MIEMBROS --> 
+            <div>
+                <h3>Miembros del grupo:</h3>
+                <div *ngFor="let miembro of datos.miembros">
+                    <h5>{{miembro.username}}</h5>
+                    <h6>Deuda de {{getDeuda(miembro.id, "grupo")}}</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  
+<ng-template #contenidoVacio>
+    <h1>No hay detalles para mostrar</h1>
+</ng-template>
+  

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark static-top bg-dark">
     <a class="navbar-brand" routerLink="/index">{{title}}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
         aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,6 +13,18 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" routerLink="/registro">Registro</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/login">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/grupos">Grupos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/amigos">Amigos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="logout()">Logout</a>
             </li>
             
             <!-- <li class="nav-item dropdown" *ngIf="login.logged"> 

@@ -48,4 +48,8 @@ public class UsuariosService {
 	public Usuarios recuperarPorUsername (String username) {
 		return this.userDAO.recuperarPorUsername(username);
 	}
+	
+	public boolean userPerteneceAGrupo(Long idUser, Long idGrupo) {
+		return this.userDAO.userPerteneceAGrupo(idUser, idGrupo);
+	}
 }

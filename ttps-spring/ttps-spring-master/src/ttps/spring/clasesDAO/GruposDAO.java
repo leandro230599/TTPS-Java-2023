@@ -18,4 +18,5 @@ public interface GruposDAO extends GenericDAO<Grupos>{
 	public boolean agregarAGrupo(Usuarios user, Long idGrupo);
 	public boolean salirseDeGrupo(Long idUser, Long idGrupo);
 	public List<Gasto> obtenerGastosGrupo(Long idGrupo);
+	public List<Grupos> getGruposUser(Long idUser);
 }

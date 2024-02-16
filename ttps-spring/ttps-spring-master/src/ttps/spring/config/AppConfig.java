@@ -20,13 +20,13 @@ public class AppConfig implements WebMvcConfigurer {
 		converters.add(new MappingJackson2HttpMessageConverter());
 	}
 	
-    /* @Override
+    @Override
     public void addCorsMappings(CorsRegistry registry) {
     	System.out.println("CORS ANDA");
         registry.addMapping("/**")
         	.allowedMethods("*")
         	.allowedOrigins("http://localhost:4200")
         	.allowedHeaders("*");
-    } */
+    }
 	
 }

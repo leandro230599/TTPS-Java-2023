@@ -99,4 +99,10 @@ public class GruposDAOHibernateJPA extends GenericDAOHibernateJPA<Grupos> implem
 		return grupo.getGastoGrupal();
 	}
 
+	@Override
+	public List<Grupos> getGruposUser(Long idUser) {
+		Usuarios user = userDAO.recuperar(idUser);
+		return user.getGrupos();
+	}
+
 }

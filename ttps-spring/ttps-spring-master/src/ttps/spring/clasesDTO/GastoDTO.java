@@ -5,6 +5,7 @@ import java.sql.Date;
 import ttps.spring.model.*;
 
 public class GastoDTO {
+		private Long id;
 		private Usuarios userGasto;
 		private Date fecha;
 		private double monto;
@@ -12,18 +13,16 @@ public class GastoDTO {
 		private String tipo;	
 		private FormaDividir formaDividir;
 		private int fmValor;
-		private Long gastoPersona;
-		private Long gastoGrupo;
 		
-		public GastoDTO (Usuarios userGasto, 
+		public GastoDTO (Long id,
+						Usuarios userGasto, 
 					    Date fecha, 
 					    double monto, 
 					    Categoria categoria, 
 					    String tipo, 
 					    FormaDividir fd, 
-					    int fdV, 
-					    Usuarios user,
-					    Grupos grupo) {
+					    int fdV) {
+			this.id = id;
 			this.userGasto = userGasto;
 			this.fecha = fecha;
 			this.monto = monto;
@@ -31,8 +30,10 @@ public class GastoDTO {
 			this.tipo = tipo;
 			this.formaDividir = fd;
 			this.fmValor = fdV;
-			this.gastoPersona = user.getId();
-			this.gastoGrupo = grupo.getId();
+		}
+		
+		public Long getId() {
+			return id;
 		}
 
 		public Usuarios getUserGasto() {
@@ -55,14 +56,6 @@ public class GastoDTO {
 		}
 		public int getFDValor() {
 			return fmValor;
-		}
-
-		public Long getGastoPersona() {
-			return gastoPersona;
-		}
-
-		public Long getGastoGrupo() {
-			return gastoGrupo;
 		}
 	
 }

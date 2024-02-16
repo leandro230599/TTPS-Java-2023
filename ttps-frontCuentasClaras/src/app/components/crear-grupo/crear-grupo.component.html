@@ -1,0 +1,46 @@
+<div class="container _padding-top">
+    <!-- Example row of columns -->
+    <div class="row">
+        <div class="offset-md-3 col-md-6 offset-md-3">
+            <div class="alert {{classstatus}}" role="alert">{{status}}</div>
+            <form #registroForm="ngForm" (ngSubmit)="onSubmit(registroForm)" class="form-horizontal">
+                <div class="row">    
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="name" class="cols-sm-2 control-label">Nombre</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="nombre" id="nombre"ngModel/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="categoria" class="cols-sm-2 control-label">Categoria</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <select  [(ngModel)]="categoria_id" name="categoria_id" id="categoria_id">
+                                        <option *ngFor="let item of lista" [value]="item.categoria_id">{{ item.nombre }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <button type="submit" class="btn btn-primary  btn-lg btn-block">Crear grupo</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <button type="reset" class="btn btn-secondary btn-lg btn-block">Vaciar Campos</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> <!-- /container -->

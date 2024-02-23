@@ -70,6 +70,14 @@ public class UsuariosDAOHibernateJPA extends GenericDAOHibernateJPA<Usuarios> im
 	public Usuarios crearUsuario(String username, String first_name, String last_name, String email, String password) {
 		Usuarios user = new Usuarios();
 		user.crearUsuario(username, first_name, last_name, email, password);
+		Usuarios userAux = this.recuperarPorEmail(user.getEmail());
+		if (userAux !=null) {
+			return null;
+		}
+		userAux = this.recuperarPorUsername(user.getUsername());
+		if (userAux !=null) {
+			return null;
+		}
 		this.persistir(user);
 		return user;
 	}
@@ -92,6 +100,20 @@ public class UsuariosDAOHibernateJPA extends GenericDAOHibernateJPA<Usuarios> im
 		Query consulta = this.getEntityManager()
 				.createQuery("FROM Usuarios u WHERE u.username = :username");
 		consulta.setParameter("username", username);
+		try {
+			resultado = (Usuarios) consulta.getSingleResult();							
+		} catch (NoResultException e) {
+			resultado = null;
+		}
+		return resultado;
+	}
+	
+	@Override
+	public Usuarios recuperarPorEmail(String email) {
+		Usuarios resultado;
+		Query consulta = this.getEntityManager()
+				.createQuery("FROM Usuarios u WHERE u.email = :email");
+		consulta.setParameter("email", email);
 		try {
 			resultado = (Usuarios) consulta.getSingleResult();							
 		} catch (NoResultException e) {

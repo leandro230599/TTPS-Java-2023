@@ -26,6 +26,10 @@ public class JWTAuthenticationFilter implements Filter {
 			 chain.doFilter(request, response);
 			 return;
 		 }
+		 if ("/ttps-spring/usuario/registrarUsuario".equals(req.getRequestURI()) || HttpMethod.OPTIONS.matches(req.getMethod())) {
+			 chain.doFilter(request, response);
+			 return;
+		 }
 		 String token = req.getHeader(HttpHeaders.AUTHORIZATION);
 		 if (token == null || !TokenService.validateToken(token)) {
 			 HttpServletResponse res = (HttpServletResponse) response;

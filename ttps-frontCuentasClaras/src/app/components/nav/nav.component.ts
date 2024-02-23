@@ -19,5 +19,13 @@ export class NavComponent {
   logout() {
     this.apiService.logout();
     this.router.navigate(['/index']);
-}
+  }
+
+  estaLogeado() : boolean{
+    let token = localStorage.getItem("token");
+    if (token){
+      return true;
+    }
+    return false;
+  }
 }

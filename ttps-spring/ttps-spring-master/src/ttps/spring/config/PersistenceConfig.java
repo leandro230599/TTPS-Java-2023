@@ -36,12 +36,12 @@ public class PersistenceConfig {
 	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-		//driverManagerDataSource.setUsername("usr6");
-		//driverManagerDataSource.setPassword("pwd6");
-		//driverManagerDataSource.setUrl("jdbc:mysql://mysql.java.linti.unlp.edu.ar/ttps_sala_bd6?useSSL=FALSE");
-		driverManagerDataSource.setUsername("root");
-		driverManagerDataSource.setPassword("");
-		driverManagerDataSource.setUrl("jdbc:mysql://localhost:3306/cuentas_claras");
+		driverManagerDataSource.setUsername("usr6");
+		driverManagerDataSource.setPassword("pwd6");
+		driverManagerDataSource.setUrl("jdbc:mysql://mysql.java.linti.unlp.edu.ar/ttps_sala_bd6?useSSL=FALSE");
+		//driverManagerDataSource.setUsername("root");
+		//driverManagerDataSource.setPassword("");
+		//driverManagerDataSource.setUrl("jdbc:mysql://localhost:3306/cuentas_claras");
 		driverManagerDataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
 		return driverManagerDataSource;
 	}
@@ -57,8 +57,8 @@ public class PersistenceConfig {
 	private Properties additionalProperties() {
 		Properties properties = new Properties();		
 		properties.setProperty("hibernate.hbm2ddl.auto", "update");
-		//properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
-		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
+		//properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
 		properties.setProperty("hibernate.default_schema", "stock");
 		return properties;
 	}
